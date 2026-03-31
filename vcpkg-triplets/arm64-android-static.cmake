@@ -1,9 +1,0 @@
-set(VCPKG_TARGET_ARCHITECTURE arm64)
-set(VCPKG_CRT_LINKAGE static)
-set(VCPKG_LIBRARY_LINKAGE static)
-
-# Android NDK settings
-set(VCPKG_CMAKE_SYSTEM_NAME Android)
-set(VCPKG_CMAKE_SYSTEM_VERSION 21)  # Android API level
-set(ANDROID_PLATFORM android-21)
-set(ANDROID_STL c++_static)

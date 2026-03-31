@@ -1,16 +1,9 @@
-# libass Android Test Project
+# Android NDK Test Repro
 
-Minimal repro project for vcpkg + CMake + Android shared library with libass.
+Minimal repro project for CMake + Android shared library to test NDK bug.
 
 ## Quick Start
-
-1. Set environment variables:
-```bash
-$env:VCPKG_ROOT = "C:\path\to\vcpkg"
-```
-
-2. Create `CMakeUserPresets.json` to set ANDROID_NDK_HOME directory:
-Also set VCPKG_HOST_TRIPLET if on windows to get pkgconfig paths
+1. Create `CMakeUserPresets.json` to set ANDROID_NDK_HOME directory:
 ```json
 {
   "version": 3,
@@ -18,18 +11,22 @@ Also set VCPKG_HOST_TRIPLET if on windows to get pkgconfig paths
     {
       "name": "LocalAndroid",
       "inherits": "android-arm64-v8a",
-      "cacheVariables": {
-        "VCPKG_HOST_TRIPLET": "x64-windows"
-      },
       "environment": {
         "ANDROID_NDK_HOME": "$env{ANDROID_HOME}/ndk/<VERSION>"
       }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "LocalAndroid",
+      "configurePreset": "LocalAndroid",
+      "inherits": "android-arm64-v8a"
     }
   ]
 }
 ```
 
-3. Build:
+2. Build:
 ```bash
 cmake --preset LocalAndroid
 cmake --build --preset LocalAndroid

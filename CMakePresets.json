@@ -4,23 +4,18 @@
     {
       "name": "android-arm64-v8a",
       "displayName": "Android ARM64 (api-21, c++_static)",
-      "description": "Android ARM64 build with vcpkg, libass, and static C++ stdlib",
+      "description": "Android ARM64 build and static C++ stdlib",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
-      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "toolchainFile": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE":"$env{VCPKG_ROOT}/scripts/toolchains/android.cmake",
-        "VCPKG_TARGET_TRIPLET": "arm64-android-static",
-        "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/vcpkg-triplets",
-        "CMAKE_ANDROID_NDK": "$env{ANDROID_NDK_ROOT}",
-        "CMAKE_SYSTEM_NAME": "Android",
-        "CMAKE_SYSTEM_VERSION": "21",
-        "CMAKE_ANDROID_PLATFORM": "android-21",
-        "CMAKE_ANDROID_ARCH_ABI": "arm64-v8a",
         "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "BOTH",
         "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "BOTH",
         "CMAKE_FIND_ROOT_PATH_MODE_PACKAGE": "BOTH",
+        "ANDROID_NDK": "$env{ANDROID_NDK_ROOT}",
+        "ANDROID_PLATFORM": "android-21",
+        "ANDROID_ABI": "arm64-v8a",
         "ANDROID_STL": "c++_static"
       }
     }
@@ -28,7 +23,7 @@
   "buildPresets": [
     {
       "name": "android-arm64-v8a",
-      "configurePreset": "android-arm64-v8a",
+      "configurePreset": "android-arm64-v8a"
     }
   ]
 }
